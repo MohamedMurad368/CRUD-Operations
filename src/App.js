@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './Store'; // تأكد من أن المسار صحيح
+import TaskList from './Components/TaskList';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
+        <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
+        <TaskList />
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
