@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './Store'; // تأكد من أن المسار صحيح
+import { store } from './Store'; 
 import TaskList from './Components/TaskList';
 
 const App = () => {

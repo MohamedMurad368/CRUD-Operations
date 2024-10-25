@@ -1,4 +1,3 @@
-// src/components/TaskForm.js
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,10 +5,10 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addTask, editTask } from '../features/TasksSlice';
 
-// تعريف المخطط للتحقق من صحة البيانات باستخدام yup
+
 const schema = yup.object().shape({
   title: yup.string().required('Title is required'),
-  description: yup.string().required('Description is required'), // جعل الوصف مطلوباً
+  description: yup.string().required('Description is required'), 
   priority: yup.string().oneOf(['Low', 'Medium', 'High']).required('Priority is required'),
   image: yup.string().required('Image is required'),
   state: yup.string().oneOf(['todo', 'doing', 'done']).required('State is required'),
