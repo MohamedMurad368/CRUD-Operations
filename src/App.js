@@ -6,7 +6,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className="container mx-auto p-4 bg-gray-100 min-h-screen text-center">
-        <h1 className="text-2xl font-bold mb-4">CRUD-Operations</h1>
+        <h1 className="text-2xl font-bold mb-4">Crud-Operations</h1>
         <Home />
       </div>
     </Provider>
