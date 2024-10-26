@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteTask } from '../Redux/features/TasksSlice';
 import TaskForm from './TaskForm';
 import Modal from './Modal/Modal';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const TaskList = () => {
   const tasks = useSelector(state => state.tasks);
@@ -36,7 +37,7 @@ const TaskList = () => {
   });
 
   return (
-    <div className="mt-6 overflow-x-auto">
+    <div className="mt-6 mx-auto max-w-6xl px-2 sm:px-4">
       <div className="mb-4 flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
         <input
           type="text"
@@ -58,7 +59,7 @@ const TaskList = () => {
           <option value="done">Done</option>
         </select>
         <button onClick={openForm} className="bg-green-500 text-white p-2 rounded-md mt-2 sm:mt-0">
-          Add New Task
+          Add New 
         </button>
       </div>
 
@@ -69,33 +70,36 @@ const TaskList = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="py-2 px-4 border-b">Image</th>
-              <th className="py-2 px-4 border-b">Title</th>
-              <th className="py-2 px-4 border-b">Description</th>
-              <th className="py-2 px-4 border-b">Priority</th>
-              <th className="py-2 px-4 border-b">State</th>
-              <th className="py-2 px-4 border-b">Actions</th>
+            <tr className="bg-gray-200 text-center text-xs sm:text-sm">
+              <th className="py-2 px-2 border-b">Title</th>
+              <th className="py-2 px-2 border-b">Image</th>
+              <th className="py-2 px-2 border-b">Description</th>
+              <th className="py-2 px-2 border-b">Priority</th>
+              <th className="py-2 px-2 border-b">State</th>
+              <th className="py-2 px-2 border-b">Actions</th>
             </tr>
           </thead>
           <tbody>
             {filteredTasks.map(task => (
-              <tr key={task.id} className="hover:bg-gray-100 transition duration-150">
-                <td className="py-2 px-4 border-b">
+              <tr key={task.id} className="hover:bg-gray-100 transition duration-150 text-center text-xs sm:text-sm">
+                <td className="py-2 px-2 border-b flex flex-col items-center">
                   {task.image && (
-                    <img src={task.image} alt={task.title} className="w-24 h-24 object-cover rounded-full border border-gray-300" />
+                    <>
+                      <img src={task.image} alt={task.title} className="w-12 h-12 object-cover rounded-full border border-gray-300 mb-1 sm:w-15 sm:h-15" />
+                    </>
                   )}
                 </td>
-                <td className="py-2 px-4 border-b">{task.title}</td>
-                <td className="py-2 px-4 border-b">{task.description}</td>
-                <td className="py-2 px-4 border-b">{task.priority}</td>
-                <td className="py-2 px-4 border-b">{task.state}</td>
-                <td className="py-2 px-4 border-b flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                  <button onClick={() => dispatch(deleteTask(task.id))} className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition duration-150">
-                    Delete
+                <td className="py-2 px-2 border-b">{task.title}</td>
+                
+                <td className="py-2 px-2 border-b">{task.description}</td>
+                <td className="py-2 px-2 border-b">{task.priority}</td>
+                <td className="py-2 px-2 border-b">{task.state}</td>
+                <td className="py-2 px-2 border-b flex justify-center items-center space-x-2">
+                  <button onClick={() => dispatch(deleteTask(task.id))} className="text-red-500 hover:text-red-600 transition duration-150 border-none">
+                    <FaTrash className="w-4 h-4 mb-3" />
                   </button>
-                  <button onClick={() => startEditing(task)} className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition duration-150">
-                    Edit
+                  <button onClick={() => startEditing(task)} className="text-yellow-500 hover:text-yellow-600 transition duration-150 border-none">
+                    <FaEdit className="w-4 h-4 mb-3" />
                   </button>
                 </td>
               </tr>

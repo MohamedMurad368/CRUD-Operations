@@ -22,25 +22,25 @@ const TaskForm = ({ task, onClose = () => {} }) => {
 
   useEffect(() => {
     if (task) {
-      reset(task); // Reset form values
-      setImagePreview(task.image); // Set image preview
+      reset(task);
+      setImagePreview(task.image);
     }
   }, [task, reset]);
 
   const onSubmit = (data) => {
     const newTask = { ...data, id: task ? task.id : Date.now() };
     dispatch(task ? editTask(newTask) : addTask(newTask));
-    reset(); // Reset form fields
-    setImagePreview(null); // Clear image preview
-    onClose(); // Close form
+    reset();
+    setImagePreview(null);
+    onClose();
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setValue('image', imageUrl); // Save the image URL
-      setImagePreview(imageUrl); // Update image preview
+      setValue('image', imageUrl);
+      setImagePreview(imageUrl);
     }
   };
 
@@ -72,7 +72,7 @@ const TaskForm = ({ task, onClose = () => {} }) => {
       
       <select {...register('state')} className="border rounded p-2 w-full">
         <option value="">Select State</option>
-        <option value="todo">ToDo</option>
+        <option value="todo">Todo</option>
         <option value="doing">Doing</option>
         <option value="done">Done</option>
       </select>
